@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:SmartSorage.Style">
+    
+    <SolidColorBrush x:Key="MainColor" Color="#2c3e50"/>
+    <SolidColorBrush x:Key="TextColorMain" Color="#ffffff"/>
+
+    <FontFamily x:Key="MainFont">Microsoft Sans Serif</FontFamily>
+
+</ResourceDictionary>
