@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:SmartSorage.Style">
+                    xmlns:local="clr-namespace:SmartSorage.Styles">
     
     <SolidColorBrush x:Key="MainColor" Color="#2c3e50"/>
     <SolidColorBrush x:Key="TextColorMain" Color="#ffffff"/>

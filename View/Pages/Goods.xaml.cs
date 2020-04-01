@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SmartSorage
+namespace SmartSorage.View.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для Goods.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Goods : Page
     {
-        public MainWindow()
+        public Goods()
         {
             InitializeComponent();
         }
