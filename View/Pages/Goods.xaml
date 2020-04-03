@@ -9,6 +9,75 @@
       Title="Goods">
 
     <Grid>
-        <TextBlock>dfffffffffffff</TextBlock>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <DockPanel  Grid.Row="0" Grid.RowSpan="1" Grid.ColumnSpan="12" Background="White" LastChildFill="True">
+            <DockPanel.Effect>
+                <DropShadowEffect BlurRadius="4"></DropShadowEffect>
+            </DockPanel.Effect>
+            <StackPanel Width="500" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                        DataContext="{Binding SelectItemGoods}">
+                <TextBlock  HorizontalAlignment="Center" Style="{StaticResource MainText}"
+                            Text="{Binding Path=Name}"></TextBlock>
+                <TextBlock HorizontalAlignment="Left" Padding="10, 0, 0, 0"
+                           Text="{Binding Path=Id}"></TextBlock>
+            </StackPanel>
+            <Button DockPanel.Dock="Right" Content="Добавить" Width="300" Style="{StaticResource ButtonNavBar}"
+                    Command="{Binding AddGoodsCommad}"
+                    CommandParameter="{Binding SelectItemGoods}"/>
+            
+            <Button DockPanel.Dock="Left" Content="Изменить" Width="300" Style="{StaticResource ButtonNavBar}"
+                    Command="{Binding EdutGoodsCommand}"
+                    CommandParameter="{Binding SelectItemGoods}"/>
+            
+            <Button DockPanel.Dock="Left" Content="Удалить" Width="300" Style="{StaticResource ButtonNavBar}"
+                    Command="{Binding DeleteGoodsCommand}"
+                    CommandParameter="{Binding SelectItemGoods}"/>
+            
+        </DockPanel>
+        <ListBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="12" Grid.RowSpan="9" 
+                 ItemsSource="{Binding GoodsItemList}"
+                 SelectedItem="{Binding SelectItemGoods}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="{Binding Img}" Width="100" Height="100" HorizontalAlignment="Right"></Image>
+                        <StackPanel Width="200">
+                            <TextBlock Text="{Binding Name}" Margin="10" Style="{StaticResource MainText}"></TextBlock>
+                            <TextBlock Text="{Binding Id}" Margin="10"></TextBlock>
+                        </StackPanel>
+                        <Button HorizontalAlignment="Right" Style="{StaticResource ButtonNavBar}" Margin="10"
+                                Command="{Binding DescriptionCommand}"
+                                CommandParameter="{Binding SelectItemGoods}">дополнительная информация</Button>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Page>

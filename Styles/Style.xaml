@@ -2,13 +2,32 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:SmartSorage.Styles">
 
-    <Style TargetType="Button">
+    <Style x:Key="ButtonBackNav" TargetType="{x:Type Button}">
         <Setter Property="Padding" Value="50"></Setter>
         <Setter Property="Foreground" Value="#ffffff"/>
         <Setter Property="Background" Value="#2c3e50"/>
         <Setter Property="FontFamily" Value="Microsoft Sans Serif"/>
         <Setter Property="FontSize" Value="35"/>
         <Setter Property="BorderThickness" Value="0"/>
+    </Style>
+
+    <Style x:Key="MainText" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="Microsoft Sans Serif"/>
+        <Setter Property="FontSize" Value="25"/>
+    </Style>
+
+    <Style x:Key="ButtonNavBar" TargetType="{x:Type Button}">
+        <Setter Property="Foreground" Value="#2c3e50"/>
+        <Setter Property="Background" Value="#ffffff"/>
+        <Setter Property="FontFamily" Value="Microsoft Sans Serif"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="BorderThickness" Value="0"/>
+    </Style>
+
+    <Style TargetType="TextBox">
+        <Setter Property="BorderThickness" Value="0, 0, 0, 3"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="Margin" Value="5"/>
     </Style>
 
 

@@ -10,22 +10,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Forms;
+using System.IO;
 
 using SmartSorage.ViewModel;
+using SmartSorage.Model;
 
-namespace SmartSorage.View.Pages
+namespace SmartSorage.View
 {
     /// <summary>
-    /// Логика взаимодействия для Goods.xaml
+    /// Логика взаимодействия для AddWindow.xaml
     /// </summary>
-    public partial class Goods : Page
+    public partial class AddWindow : Window
     {
-        public Goods()
+        public AddWindow()
         {
             InitializeComponent();
-            DataContext = new GoodsViewModel();
         }
+
     }
 }

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartSorage"
         mc:Ignorable="d"
-        Title="MainWindow" Height="920" Width="1800">
+        Title="MainWindow" Height="920" Width="1800"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
@@ -18,16 +19,27 @@
             <TextBlock Padding="55" 
                        Background="White"
                        FontSize="50">Smart Storage</TextBlock>
+            
             <Button Command="{Binding SelectPage}"
-                    CommandParameter="{Binding GoodsPage}">Товары</Button>
+                    CommandParameter="{Binding GoodsPage}"
+                    Style="{StaticResource ButtonBackNav}">Товары</Button>
+            
             <Button Command="{Binding SelectPage}"
-                    CommandParameter="{Binding StateStoragePage}">Состояние склада</Button>
+                    CommandParameter="{Binding StateStoragePage}"
+                    Style="{StaticResource ButtonBackNav}">Состояние склада</Button>
+            
             <Button Command="{Binding SelectPage}"
-                    CommandParameter="{Binding StateRobotPage}">Состояние роботов</Button>
+                    CommandParameter="{Binding StateRobotPage}"
+                    Style="{StaticResource ButtonBackNav}">Состояние роботов</Button>
+            
             <Button Command="{Binding SelectPage}"
-                    CommandParameter="{Binding StateBoxPage}">КК</Button>
+                    CommandParameter="{Binding StateBoxPage}"
+                    Style="{StaticResource ButtonBackNav}">КК</Button>
+            
             <Button Command="{Binding SelectPage}"
-                    CommandParameter="{Binding DocumentPage}">Документы</Button>
+                    CommandParameter="{Binding DocumentPage}"
+                    Style="{StaticResource ButtonBackNav}">Документы</Button>
+            
         </StackPanel>
     </Grid>
 </Window>
