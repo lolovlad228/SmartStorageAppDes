@@ -15,7 +15,9 @@ namespace SmartSorage.ViewModel
 
         public DataContext DataContextInfo;
         public Action CloseAct { get; set; }
-
+        private CsvInterfase _csvFile;
+        private string _selectSeassons;
+        private List<string> _listSeassons;
         private Goods _newGoods;
         private byte[] _imgSourse;
 
@@ -26,6 +28,26 @@ namespace SmartSorage.ViewModel
             {
                 _imgSourse = value;
                 OnPropertyChangr("ImgSourse");
+            }
+        }
+
+        public string SelectSeassons
+        {
+            get { return _selectSeassons; }
+            set
+            {
+                _selectSeassons = value;
+                OnPropertyChangr("SelectSeassons");
+            }
+        }
+
+        public List<string> ListSeassons
+        {
+            get { return _listSeassons; }
+            set
+            {
+                _listSeassons = value;
+                OnPropertyChangr("ListSeassons");
             }
         }
 
@@ -46,11 +68,21 @@ namespace SmartSorage.ViewModel
         }
         public EditeGoodsViewModel(Goods NowGoods, DataContext data)
         {
+            ListSeassons = new List<string>()
+            {
+                "winter",
+                "spring",
+                "summer",
+                "autumn",
+                "none"
+            };
+
+            SelectSeassons = NowGoods.Seassons;
             NewGoods = NowGoods;
             ImgSourse = NewGoods.Img;
 
             DataContextInfo = data;
-
+            _csvFile = new CsvInterfase();
             LoadFileCommand = new DelegetCommand(LoadFile);
             CloseWindowCommand = new DelegetCommand(CloseWindow);
             EntryGoodsCommand = new DelegetCommand(EditGoods);
@@ -65,7 +97,7 @@ namespace SmartSorage.ViewModel
 
             if (FileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                NewGoods.Img = ImageConver.ConvertToByte(new System.Drawing.Bitmap(FileDialog.FileName));
+                NewGoods.Img = ImageAplication.ConvertToByte(new System.Drawing.Bitmap(FileDialog.FileName));
                 ImgSourse = NewGoods.Img;
             }
         }
@@ -77,8 +109,13 @@ namespace SmartSorage.ViewModel
 
         private void EditGoods(object parametr)
         {
-
+            _csvFile.PathFile = NewGoods.Name;
+            _csvFile.SaveCsv(NewGoods.Prise);
+            NewGoods.QrImg = ImageAplication.GenerateQrCode(NewGoods.Name, 5);
+            NewGoods.DateReg = DateTime.Now;
+            NewGoods.Seassons = SelectSeassons;
             DataContextInfo.SaveChanges();
+            CloseAct();
 
         }
     }

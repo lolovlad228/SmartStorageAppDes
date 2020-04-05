@@ -1,0 +1,58 @@
+﻿<Window x:Class="SmartSorage.View.AdditionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:local="clr-namespace:SmartSorage.View"
+        mc:Ignorable="d"
+        Title="AdditionWindow" Height="650" Width="1200">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Image Grid.Column="1" Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="3"
+               Source="{Binding SelectGoods.Img}"/>
+        <Image Grid.Column="1" Grid.Row="6" Grid.RowSpan="4" Grid.ColumnSpan="3"
+               Source="{Binding SelectGoods.QrImg}"/>
+        <TextBlock Grid.Column="5" Grid.Row="1" Grid.RowSpan="1" Grid.ColumnSpan="2"
+                   Text="{Binding SelectGoods.Name}"/>
+        <TextBlock Grid.Column="5" Grid.Row="3" Grid.RowSpan="1" Grid.ColumnSpan="2"
+                   Text="{Binding SelectGoods.Prise}"/>
+        <TextBlock Grid.Column="8" Grid.Row="3" Grid.RowSpan="1" Grid.ColumnSpan="2"
+                   Text="{Binding SelectGoods.DateReg}"/>
+        <TextBlock Grid.Column="5" Grid.Row="5" Grid.RowSpan="1" Grid.ColumnSpan="3"
+                   Text="{Binding SelectGoods.Seassons}"/>
+        <TextBlock Grid.Column="5" Grid.Row="7" Grid.RowSpan="3" Grid.ColumnSpan="3"
+                   Text="{Binding SelectGoods.Description}"/>
+       
+    </Grid>
+</Window>

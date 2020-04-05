@@ -21,6 +21,7 @@ namespace SmartSorage.ViewModel
         public ICommand AddGoodsCommad { get; private set; }
         public ICommand EdutGoodsCommand { get; private set; }
         public ICommand DeleteGoodsCommand { get; private set; }
+        public ICommand AdditionViewGoodsCommand { get; private set; }
 
         public IEnumerable<Goods> GoodsItemList
         {
@@ -57,6 +58,7 @@ namespace SmartSorage.ViewModel
             AddGoodsCommad = new DelegetCommand(AddGoodsCommandEv);
             DeleteGoodsCommand = new DelegetCommand(DeleteGoodsCommandEv, IsGoodsCommands);
             EdutGoodsCommand = new DelegetCommand(EditGoodsCommandEv, IsGoodsCommands);
+            AdditionViewGoodsCommand = new DelegetCommand(AdditionViewGoodsCommandEv, IsGoodsCommands);
         }
 
 
@@ -80,14 +82,25 @@ namespace SmartSorage.ViewModel
 
         private void EditGoodsCommandEv(object parametr)
         {
-            
-            EditeGoodsViewModel editGoodsViewModel = new EditeGoodsViewModel(SelectItemGoods, _mainDataContext);
+            Goods goodsSel = parametr as Goods;
+            EditeGoodsViewModel editGoodsViewModel = new EditeGoodsViewModel(goodsSel, _mainDataContext);
             AddWindow DialogWin = new AddWindow();
             DialogWin.DataContext = editGoodsViewModel;
             if (editGoodsViewModel.CloseAct == null)
                 editGoodsViewModel.CloseAct = new Action(() => DialogWin.Close());
 
             DialogWin.ShowDialog();
+
+        }
+
+        private void AdditionViewGoodsCommandEv(object parametr)
+        {
+            AdditionWindow additionWindow = new AdditionWindow();
+            AdditionViewModel additionViewModel = new AdditionViewModel(SelectItemGoods);
+            additionWindow.DataContext = additionViewModel;
+            if (additionViewModel.CloseAct == null)
+                additionViewModel.CloseAct = new Action(() => additionWindow.Close());
+            additionWindow.Show();
         }
 
         private bool IsGoodsCommands(object parametr)

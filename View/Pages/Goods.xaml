@@ -48,15 +48,19 @@
                 <TextBlock HorizontalAlignment="Left" Padding="10, 0, 0, 0"
                            Text="{Binding Path=Id}"></TextBlock>
             </StackPanel>
-            <Button DockPanel.Dock="Right" Content="Добавить" Width="300" Style="{StaticResource ButtonNavBar}"
-                    Command="{Binding AddGoodsCommad}"
+            <Button DockPanel.Dock="Right" Content="Доп Инфо" Width="225" Style="{StaticResource ButtonNavBar}"
+                    Command="{Binding AdditionViewGoodsCommand}"
                     CommandParameter="{Binding SelectItemGoods}"/>
             
-            <Button DockPanel.Dock="Left" Content="Изменить" Width="300" Style="{StaticResource ButtonNavBar}"
+            <Button DockPanel.Dock="Right" Content="Добавить" Width="225" Style="{StaticResource ButtonNavBar}"
+                    Command="{Binding AddGoodsCommad}"
+                    CommandParameter="{Binding SelectItemGoods}"/>
+
+            <Button DockPanel.Dock="Left" Content="Изменить" Width="225" Style="{StaticResource ButtonNavBar}"
                     Command="{Binding EdutGoodsCommand}"
                     CommandParameter="{Binding SelectItemGoods}"/>
             
-            <Button DockPanel.Dock="Left" Content="Удалить" Width="300" Style="{StaticResource ButtonNavBar}"
+            <Button DockPanel.Dock="Left" Content="Удалить" Width="225" Style="{StaticResource ButtonNavBar}"
                     Command="{Binding DeleteGoodsCommand}"
                     CommandParameter="{Binding SelectItemGoods}"/>
             
@@ -67,14 +71,11 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="{Binding Img}" Width="100" Height="100" HorizontalAlignment="Right"></Image>
+                        <Image Source="{Binding Img, UpdateSourceTrigger=PropertyChanged}" Width="100" Height="100" HorizontalAlignment="Right"></Image>
                         <StackPanel Width="200">
                             <TextBlock Text="{Binding Name}" Margin="10" Style="{StaticResource MainText}"></TextBlock>
                             <TextBlock Text="{Binding Id}" Margin="10"></TextBlock>
                         </StackPanel>
-                        <Button HorizontalAlignment="Right" Style="{StaticResource ButtonNavBar}" Margin="10"
-                                Command="{Binding DescriptionCommand}"
-                                CommandParameter="{Binding SelectItemGoods}">дополнительная информация</Button>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

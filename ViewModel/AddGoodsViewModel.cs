@@ -9,8 +9,9 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using SmartSorage.Model;
 using System.Data.Entity;
-using QRCoder;
+
 using SmartSorage.Class;
+using System.Windows;
 
 namespace SmartSorage.ViewModel
 {
@@ -20,6 +21,9 @@ namespace SmartSorage.ViewModel
         public DataContext DataContextInfo;
         public Action CloseAct { get; set; }
 
+        private CsvInterfase _csvFile;
+        private string _selectSeassons;
+        private List<string> _listSeassons;
         private Goods _newGoods;
         private byte[] _imgSourse;
 
@@ -29,6 +33,25 @@ namespace SmartSorage.ViewModel
             {
                 _imgSourse = value;
                 OnPropertyChangr("ImgSourse");
+            }
+        }
+        public string SelectSeassons
+        {
+            get { return _selectSeassons; }
+            set
+            {
+                _selectSeassons = value;
+                OnPropertyChangr("SelectSeassons");
+            }
+        }
+
+        public List<string> ListSeassons
+        {
+            get { return _listSeassons; }
+            set
+            {
+                _listSeassons = value;
+                OnPropertyChangr("ListSeassons");
             }
         }
 
@@ -51,8 +74,18 @@ namespace SmartSorage.ViewModel
         public AddGoodsViewModel(DataContext data)
         {
             NewGoods = new Goods();
+            ListSeassons = new List<string>()
+            {
+                "winter",
+                "spring",
+                "summer",
+                "autumn",
+                "none"
+            };
 
             DataContextInfo = data;
+
+            _csvFile = new CsvInterfase();
 
             LoadFileCommand = new DelegetCommand(LoadFile);
             CloseWindowCommand = new DelegetCommand(CloseWindow);
@@ -68,7 +101,7 @@ namespace SmartSorage.ViewModel
 
             if (FileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                NewGoods.Img = ImageConver.ConvertToByte(new System.Drawing.Bitmap(FileDialog.FileName));
+                NewGoods.Img = ImageAplication.ConvertToByte(new System.Drawing.Bitmap(FileDialog.FileName));
                 ImgSourse = NewGoods.Img;
             }
         }
@@ -76,14 +109,16 @@ namespace SmartSorage.ViewModel
         private void AddGoods(object parametr)
         {
             NewGoods.DateReg = DateTime.Now;
-            QRCodeGenerator GoodsQrCode = new QRCodeGenerator();
-            QRCodeData qRCodeData = GoodsQrCode.CreateQrCode(NewGoods.Name, QRCodeGenerator.ECCLevel.Q);
-            QRCode GoodsCode = new QRCode(qRCodeData);
-            NewGoods.QrImg = ImageConver.ConvertToByte(GoodsCode.GetGraphic(5));
+            NewGoods.QrImg = ImageAplication.GenerateQrCode(NewGoods.Name, 5);
+            NewGoods.Seassons = SelectSeassons;
+
+            _csvFile.PathFile = NewGoods.Name;
+            _csvFile.SaveCsv(NewGoods.Prise);
 
             DataContextInfo.Goods.Add(NewGoods);
             DataContextInfo.SaveChanges();
-            
+            NewGoods = new Goods();
+            ImgSourse = null;
         }
 
         private void CloseWindow(object parametr)
